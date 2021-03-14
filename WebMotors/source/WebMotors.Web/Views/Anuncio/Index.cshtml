@@ -1,0 +1,55 @@
+﻿@model List<Anuncio>
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Meus Anúncios</h1>
+            <hr />
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <a href="@Url.Action("Cadastrar", "Anuncio")" class="btn btn btn-primary" style="float: right;">Novo Anúncio</a>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Versâo</th>
+                        <th scope="col">Ano</th>
+                        <th scope="col">Quilometragem</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Marca)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Modelo)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Versao)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Ano)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Quilometragem)</td>
+                            <td>
+                                <a href="@Url.Action("Atualizar", "Anuncio", new {id=item.Id })" class="btn btn btn-primary" style="float: right;">Atualizar</a> |
+                                <a href="@Url.Action("Remover", "Anuncio", new {id=item.Id })" class="btn btn btn-danger" style="float: right; margin-right: 10px;">Deletar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <h5>Nenhum resultado encontrado.</h5>
+}

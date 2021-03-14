@@ -1,0 +1,57 @@
+﻿@model Anuncio
+
+@{
+    ViewData["Title"] = "Remover Anúncio";
+}
+
+<h1>Remover Anúncio</h1>
+<hr />
+
+@Html.ValidationSummary(false)
+
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-md-4">
+            <label>
+                Marca
+            </label>
+            <span class="badge badge-primary">@Model.Marca</span>
+        </div>
+        <div class="col-md-4">
+            <label>
+                Modelo
+            </label>
+            <span class="badge badge-primary">@Model.Modelo</span>
+        </div>
+        <div class="col-md-4">
+            <label>
+                Versão
+            </label>
+            <span class="badge badge-primary">@Model.Versao</span>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Tem certeza que deseja remover o anúncio ?</h2>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <form asp-action="Remover" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-primary" value="Remover" style="float:right;" />
+                <a href="@Url.Action("Index", "Anuncio")" class="btn btn-success" style="float:right; margin-right:10px; ">Cancelar</a>
+            </div>
+        </form>
+    </div>
+}
+else
+{
+    <h5>Anúncio não encontrado.</h5>
+}

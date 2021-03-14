@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebMotors.Core\WebMotors.Core.csproj" />
+    <ProjectReference Include="..\WebMotors.Infra\WebMotors.Infra.csproj" />
+  </ItemGroup>
+
+</Project>

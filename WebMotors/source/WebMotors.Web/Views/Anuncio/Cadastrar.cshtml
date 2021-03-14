@@ -1,0 +1,96 @@
+﻿@model WebMotors.Core.Entidades.Anuncio
+
+@{
+    ViewData["Title"] = "Anunciar Veículo";
+}
+
+<h1>Anunciar Veículo</h1>
+<form asp-action="Cadastrar" method="post">
+    <hr />
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Marca, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                <select class="form-control" asp-for="MarcaId" asp-items="ViewBag.ListaDeMarcas">
+                    <option value="-1">Selecione...</option>
+                </select>
+                <span asp-validation-for="MarcaId"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Modelo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @if (ViewBag.ListaDeModelos != null)
+                {
+                    <select class="form-control" asp-for="ModeloId" asp-items="ViewBag.ListaDeModelos">
+                    </select>
+                }
+                else
+                {
+                    <select class="form-control" asp-for="ModeloId">
+                        <option value="-1">Selecione...</option>
+                    </select>
+                }
+
+                <span asp-validation-for="ModeloId"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Versao, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @if (ViewBag.ListaDeVersoes != null)
+                {
+                    <select class="form-control" asp-for="VersaoId" asp-items="ViewBag.ListaDeVersoes">
+                    </select>
+                }
+                else
+                {
+                    <select class="form-control" asp-for="VersaoId">
+                        <option value="-1">Selecione...</option>
+                    </select>
+                }
+                <span asp-validation-for="VersaoId"></span>
+
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Ano</label>
+                <input class="form-control" type="text" asp-for="Ano" placeholder="Ano" />
+                <span asp-validation-for="Ano" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Quilômetragem </label>
+                <input class="form-control" type="text" asp-for="Quilometragem" placeholder="Quilômetragem" />
+                <span asp-validation-for="Quilometragem" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Observação</label>
+                <input class="form-control" type="text" asp-for="Observacao" placeholder="Observação" />
+                <span asp-validation-for="Observacao" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    
+    <input type="submit" value="Cadastrar" class="btn btn-success" style="float:right; margin-left:10px;" />
+    <a href="@Url.Action("Index", "Anuncio")" class="btn btn-danger" style="float:right">Cancelar </a>
+
+    <input type="hidden" id="Marca" asp-for="Marca" />
+    <input type="hidden" id="Modelo" asp-for="Modelo" />
+    <input type="hidden" id="Versao" asp-for="Versao" />
+
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
